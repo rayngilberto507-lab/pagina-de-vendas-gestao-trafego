@@ -43,10 +43,10 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
   {
     id: '5',
-    name: 'Camiseta DropsMob Exclusive Preta',
+    name: 'Camiseta Básica Preta Streetwear',
     price: 950,
-    description: 'Camiseta preta minimalista com a marca DropsMob. Sem estampas exageradas, apenas estilo puro.',
-    image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&q=80&w=1000',
+    description: 'Estilo minimalista, tecido respirável e corte moderno. Perfeita para qualquer ocasião.',
+    image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=1000',
     category: Category.CAMISETAS
   },
   {
