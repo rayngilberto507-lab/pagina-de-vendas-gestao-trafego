@@ -16,6 +16,7 @@ const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category | 'Todos'>('Todos');
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Persist cart to localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem('dropsmob_cart');
     if (savedCart) setCart(JSON.parse(savedCart));
@@ -48,6 +49,7 @@ const App: React.FC = () => {
       }
       return [...prev, { ...product, quantity: 1 }];
     });
+    alert(`${product.name} adicionado ao carrinho!`);
   };
 
   const handleBuyNow = (product: Product) => {
@@ -89,6 +91,7 @@ const App: React.FC = () => {
 
     setOrders(prev => [newOrder, ...prev]);
     
+    // Construct WhatsApp message
     const message = `Olá DropsMob 👋%0A%0A` +
       `Já efectuei o pagamento via e-Mola.%0A%0A` +
       `👤 *Nome:* ${customerData.name}%0A` +
@@ -99,7 +102,7 @@ const App: React.FC = () => {
       `📍 *Endereço:* ${customerData.address || 'Não informado'}%0A%0A` +
       `Aguardando confirmação!`;
 
-    setCart([]);
+    setCart([]); // Clear cart
     window.open(`https://wa.me/${STORE_PHONE}?text=${message}`, '_blank');
     setView('home');
   };
@@ -113,39 +116,42 @@ const App: React.FC = () => {
       case 'home':
         return (
           <div className="pb-24">
-            <div className="relative h-48 md:h-64 rounded-3xl overflow-hidden mb-8 mx-4 border border-gray-800">
+            {/* Hero Section */}
+            <div className="relative h-48 md:h-64 rounded-3xl overflow-hidden mb-8 mx-4">
               <img 
                 src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200" 
                 alt="DropsMob Promo" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-transparent flex flex-col justify-center px-8">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent flex flex-col justify-center px-8">
                 <span className="text-emola-green font-extrabold text-xs uppercase tracking-widest mb-2">Moda & Tecnologia</span>
                 <h2 className="text-3xl md:text-4xl font-black text-white leading-none mb-4">
                   O MELHOR DE <br/>MOÇAMBIQUE 🇲🇿
                 </h2>
                 <div className="flex space-x-2">
-                   <div className="bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold">ENTREGA RÁPIDA</div>
-                   <div className="bg-emola-green px-3 py-1 rounded-full text-white text-[10px] font-bold shadow-lg">PAGAMENTO E-MOLA</div>
+                   <div className="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold">ENTREGA RÁPIDA</div>
+                   <div className="bg-emola-green px-3 py-1 rounded-full text-white text-[10px] font-bold">PAGAMENTO E-MOLA</div>
                 </div>
               </div>
             </div>
 
+            {/* Search */}
             <div className="px-4 mb-8">
               <div className="relative">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-500">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-gray-400">
                   <ICONS.Search />
                 </div>
                 <input 
                   type="text" 
-                  placeholder="Pesquisar produtos..." 
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-[#111] border border-gray-800 text-white shadow-sm outline-none focus:border-emola-green transition-all placeholder-gray-600"
+                  placeholder="Pesquisar camisetas, iPhones..." 
+                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border border-gray-100 shadow-sm outline-none focus:border-emola-green transition-all"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
             </div>
 
+            {/* Categories */}
             <div className="flex space-x-2 px-4 mb-8 overflow-x-auto no-scrollbar">
               {['Todos', ...Object.values(Category)].map((cat) => (
                 <button
@@ -153,8 +159,8 @@ const App: React.FC = () => {
                   onClick={() => setActiveCategory(cat as any)}
                   className={`px-6 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all ${
                     activeCategory === cat 
-                      ? 'bg-emola-green text-black shadow-lg shadow-emola-green/20 scale-105' 
-                      : 'bg-[#111] text-gray-400 border border-gray-800'
+                      ? 'bg-black text-white shadow-lg scale-105' 
+                      : 'bg-white text-gray-500 border border-gray-100'
                   }`}
                 >
                   {cat}
@@ -162,6 +168,7 @@ const App: React.FC = () => {
               ))}
             </div>
 
+            {/* Product Grid */}
             <div className="px-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {filteredProducts.map(product => (
                 <ProductCard 
@@ -172,7 +179,7 @@ const App: React.FC = () => {
                 />
               ))}
               {filteredProducts.length === 0 && (
-                <div className="col-span-full py-12 text-center text-gray-600">
+                <div className="col-span-full py-12 text-center text-gray-400">
                   Nenhum produto encontrado.
                 </div>
               )}
@@ -210,17 +217,17 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pb-20 md:pb-0 md:pt-20">
-      <header className="bg-black/80 backdrop-blur-md md:fixed top-0 left-0 right-0 z-40 px-4 h-16 flex items-center justify-between border-b border-gray-900">
-        <div className="flex items-center space-x-2 cursor-pointer" onClick={() => setView('home')}>
-          <div className="w-10 h-10 bg-emola-green rounded-xl flex items-center justify-center text-black font-black shadow-lg shadow-emola-green/20">DM</div>
-          <span className="text-xl font-black tracking-tighter text-white">DROPS<span className="text-emola-green">MOB</span></span>
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-0 md:pt-20">
+      <header className="bg-white md:fixed top-0 left-0 right-0 z-40 px-4 h-16 flex items-center justify-between md:shadow-sm">
+        <div className="flex items-center space-x-2">
+          <div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center text-emola-green font-black">DM</div>
+          <span className="text-xl font-black tracking-tighter">DROPS<span className="text-emola-green">MOB</span></span>
         </div>
         <div className="flex space-x-3">
-          <button onClick={() => setView('cart')} className="bg-[#111] border border-gray-800 p-2.5 rounded-full relative text-white">
+          <button className="bg-gray-100 p-2.5 rounded-full relative">
             <ICONS.Cart />
             {cart.length > 0 && (
-              <span className="absolute -top-1 -right-1 bg-emola-green text-black text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                 {cart.length}
               </span>
             )}
@@ -234,11 +241,12 @@ const App: React.FC = () => {
 
       <Navbar currentView={view} setView={setView} cartCount={cart.length} />
 
+      {/* Floating WhatsApp Button */}
       <a 
         href={`https://wa.me/${STORE_PHONE}?text=Olá DropsMob, gostaria de tirar uma dúvida.`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-24 right-6 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-40"
+        className="fixed bottom-24 right-6 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40"
       >
         <ICONS.WhatsApp />
       </a>

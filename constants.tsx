@@ -10,16 +10,16 @@ export const INITIAL_PRODUCTS: Product[] = [
     id: '1',
     name: 'Camiseta Algodão Premium Branca',
     price: 1200,
-    description: 'Camiseta 100% algodão fio 30.1, corte clássico e acabamento de alta qualidade. Essencial e confortável.',
-    image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&q=80&w=1000',
+    description: 'Camiseta 100% algodão fio 30.1, corte slim e acabamento de alta qualidade. Ideal para o calor de Maputo.',
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&q=80&w=1000',
     category: Category.CAMISETAS,
     featured: true
   },
   {
     id: '2',
     name: 'iPhone 15 Pro Max 256GB - Titanium Natural',
-    price: 42000,
-    description: 'O novo iPhone com acabamento em Titânio, câmera de 48MP e o chip A17 Pro. Potência pura.',
+    price: 115000,
+    description: 'O mais novo iPhone com acabamento em Titânio, câmera de 48MP e o chip A17 Pro mais rápido do mercado.',
     image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&q=80&w=1000',
     category: Category.ELETRODOMESTICOS,
     featured: true
@@ -27,33 +27,33 @@ export const INITIAL_PRODUCTS: Product[] = [
   {
     id: '3',
     name: 'Liquidificador Philips Walita ProBlend 6',
-    price: 2000,
-    description: 'Potência de 800W com 6 lâminas ultra-afiadas. Ideal para sucos e vitaminas perfeitas.',
+    price: 4500,
+    description: 'Potência de 800W com 6 lâminas ultra-afiadas. Jarra resistente e design moderno para sua cozinha.',
     image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&q=80&w=1000',
     category: Category.ELETRODOMESTICOS
   },
   {
     id: '4',
     name: 'PlayStation 5 Slim 1TB',
-    price: 39000,
-    description: 'A nova versão Slim do console mais desejado. Gráficos em 4K e carregamento instantâneo.',
+    price: 58000,
+    description: 'A nova versão Slim do console mais desejado. Gráficos em 4K e carregamento instantâneo com SSD.',
     image: 'https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&q=80&w=1000',
     category: Category.ELETRODOMESTICOS,
     featured: true
   },
   {
     id: '5',
-    name: 'Camiseta Básica Preta Streetwear',
+    name: 'Camiseta Urban Streetwear Preta',
     price: 950,
-    description: 'Estilo minimalista, tecido respirável e corte moderno. Perfeita para qualquer ocasião.',
-    image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&q=80&w=1000',
+    description: 'Estampa minimalista, tecido respirável e estilo moderno para jovens empreendedores de Moçambique.',
+    image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&q=80&w=1000',
     category: Category.CAMISETAS
   },
   {
     id: '6',
     name: 'Smart TV Samsung 55" Crystal UHD 4K',
-    price: 15000,
-    description: 'Qualidade de imagem 4K real, design fino e conectividade inteligente total.',
+    price: 42000,
+    description: 'Qualidade de imagem 4K real, design sem bordas e acesso a todos os aplicativos de streaming.',
     image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&q=80&w=1000',
     category: Category.ELETRODOMESTICOS
   }
