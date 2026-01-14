@@ -1,0 +1,8 @@
+{
+  "name": "Copy of DropsMob - Loja Online Moçambicana",
+  "description": "Uma plataforma de e-commerce moderna para Moçambique, especializada em camisetas e eletrodomésticos com integração de pagamento e-Mola e confirmação via WhatsApp.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
